@@ -1,0 +1,92 @@
+experiments:
+  - experiment_name: "MCTS_1s_vs_MCTS_2s"
+    experiment_type: standard
+    runs: 10
+
+    # Base settings
+    randomize_player_positions: True
+    game_settings:
+      number_of_players: 4
+      max_turns: 1000
+      max_attacking_armies: 500
+      max_defending_armies: 500
+      load_game_state: False
+    environment_settings:
+      rendering:
+        enabled: False
+    paths:
+      board_file: ./data/standard_board.json
+      game_state_load_file: data/saves/end_game_state_test.json
+      game_state_save_file: data/saves/game_state.json
+      experiment_output_path: data/experiments_results/
+
+    # Player settings
+    players:
+      - type: mcts
+        settings:
+          think_time: 1.0
+      - type: mcts
+        settings:
+          think_time: 2.0
+      - type: basic_evaluation
+      - type: basic_evaluation
+
+    # Default player settings
+    player_settings:
+      mcts:
+        C: 1.41
+        playout_policy: Random
+        reinforce_all_heuristic: False
+        fortify_all_heuristic: False
+        gamma: 0.99
+        stopping_condition: TimeBased
+        selection_policy: MaxChild
+        evaluative_policy: Dummy
+        max_iterations: 0
+        policy_convergence_window: 0
+
+  - experiment_name: "MCTS_think_time_tuning"
+    experiment_type: tuning
+    runs: 5
+
+    tuning_parameter: player_settings.mcts.think_time
+    tuning_values: [0.5, 1.0, 2.0, 3.0, 5.0, 8.0]
+
+    # Base settings
+    randomize_player_positions: True
+    game_settings:
+      number_of_players: 4
+      max_turns: 10
+      max_attacking_armies: 500
+      max_defending_armies: 500
+      load_game_state: False
+    environment_settings:
+      rendering:
+        enabled: False
+    paths:
+      board_file: ./data/standard_board.json
+      game_state_load_file: data/saves/end_game_state_test.json
+      game_state_save_file: data/saves/game_state.json
+      experiment_output_path: data/experiments_results/MCTS_think_time_tuning/
+
+    # Player settings
+    players:
+      - type: mcts
+      - type: random
+      - type: random
+      - type: random
+
+    # Default player settings
+    player_settings:
+      mcts:
+        C: 1.41
+        playout_policy: Random
+        reinforce_all_heuristic: False
+        fortify_all_heuristic: False
+        gamma: 0.99
+        stopping_condition: TimeBased
+        selection_policy: MaxChild
+        evaluative_policy: Dummy
+        max_iterations: 0
+        policy_convergence_window: 0
+

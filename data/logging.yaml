@@ -1,0 +1,45 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  standard:
+    format: '%(name)s - %(levelname)s: %(message)s'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: standard
+    level: DEBUG
+    stream: ext://sys.stdout
+
+loggers:
+  # Root logger configuration
+  root:
+    handlers: [console]
+    level: INFO
+    propagate: true
+
+  risk_agent.engine.game_manager:
+    handlers: [console]
+    level: WARNING
+    propagate: false
+
+  risk_agent.utils.data_collector:
+    handlers: [console]
+    level: WARNING
+    propagate: false
+
+  risk_agent.players.basic_evaluation_player:
+    handlers: [console]
+    level: WARNING
+    propagate: false
+
+  risk_agent.players.mcts.mcts_player:
+    handlers: [console]
+    level: WARNING
+    propagate: false
+
+  risk_agent.players.mcts.tree:
+      handlers: [console]
+      level: WARNING
+      propagate: false

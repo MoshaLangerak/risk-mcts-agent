@@ -1,0 +1,41 @@
+# Game specific settings
+game_settings:
+  number_of_players: 4
+  max_turns: 1000
+  max_attacking_armies: 250
+  max_defending_armies: 250
+  load_game_state: False
+
+# Settings for environment
+environment_settings:
+  rendering:
+    enabled: True
+    action_delay_ms: 10
+
+# File and directory paths
+paths:
+  board_file: ./data/standard_board.json
+  game_state_load_file: data/saves/end_game_state_test.json
+  game_state_save_file: data/saves/game_state.json
+
+# Player settings
+players:
+  - type: mcts
+  - type: random
+  - type: random
+  - type: random
+
+player_settings:
+  mcts:
+    C: 1.25
+    search_policy: Confident
+    playout_policy: Heuristic
+    reinforce_all_heuristic: True
+    fortify_all_heuristic: True
+    gamma: 0.99
+    stopping_condition: TimeBased
+    selection_policy: MaxChild
+    think_time: 2.0
+    evaluative_policy: Dummy
+    max_iterations: 500
+    policy_convergence_window: 3

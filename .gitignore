@@ -1,0 +1,25 @@
+# python artifacts
+__pycache__/
+*.pyc
+*.egg-info/
+venv/
+.env
+.DS_Store
+
+# Project data output
+experiments/*/
+data/logs/
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# Temporary build artifacts
+build/
+
+# Distribution files (tar.gz, whl)
+dist/
+
+# Metadata info generated during install
+*.egg-info/

@@ -1,0 +1,39 @@
+[project]
+name = "risk-agent"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.2.0",
+    "scipy>=1.15.0",
+    "pandas>=2.3.0",
+    "pygame>=2.5.0",
+    "PyYAML>=6.0.0",
+    "matplotlib>=3.10.0",
+]
+
+[project.scripts]
+risk-agent = "risk_agent.main:main"
+run-experiments = "risk_agent.run_experiments:main"
+
+[project.optional-dependencies]
+dev = ["ruff>=0.11.0"]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # Pyflakes
+    "W",   # pycodestyle warnings
+    "N",   # pep8-naming (for naming conventions!)
+    "I",   # isort (import sorting)
+    "UP",  # pyupgrade (modernize syntax)
+    "ANN", # flake8-annotations (type annotation checks)
+]
+
+# Configure formatter (Ruff's formatter is Black-compatible by default)
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
